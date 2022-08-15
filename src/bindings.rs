@@ -11762,7 +11762,7 @@ extern "C" {
     pub fn network_predict(net: network, input: *mut f32) -> *mut f32;
 }
 extern "C" {
-    pub fn network_predict_texture(net: *mut network, texture_id: u32) -> *mut f32;
+    pub fn network_predict_gl_texture(net: *mut network, texture_id: u32) -> *mut f32;
 }
 extern "C" {
     pub fn network_predict_ptr(net: *mut network, input: *mut f32) -> *mut f32;
