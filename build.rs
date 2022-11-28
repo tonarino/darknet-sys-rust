@@ -131,15 +131,20 @@ fn gen_bindings<P>(include_path: P) -> Result<()>
 where
     P: AsRef<Path>,
 {
-    bindgen::Builder::default()
+    let mut builder = bindgen::Builder::default()
         .header(
             include_path
                 .as_ref()
                 .join("darknet.h")
                 .to_str()
                 .ok_or_else(|| format_err!("cannot create path to darknet.h"))?,
-        )
-        .generate()
+        );
+
+    if cfg!(feature = "enable-cuda-opengl-integration") {
+        builder = builder.clang_arg("-DCUDA_OPENGL_INTEGRATION");
+    }
+
+    builder.generate()
         .map_err(|_| format_err!("failed to generate bindings"))?
         .write_to_file(&*BINDINGS_TARGET_PATH)?;
     Ok(())
