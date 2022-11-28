@@ -161,6 +161,10 @@ fn is_opencv_enabled() -> bool {
     cfg!(feature = "enable-opencv")
 }
 
+fn is_cuda_opengl_integration_enabled() -> bool {
+    cfg!(feature = "enable-cuda-opengl-integration")
+}
+
 fn build_with_cmake<P>(path: P) -> Result<()>
 where
     P: AsRef<Path>,
@@ -182,6 +186,10 @@ where
         .define(
             "ENABLE_OPENCV",
             if is_opencv_enabled() { "ON" } else { "OFF" },
+        )
+        .define(
+            "ENABLE_CUDA_OPENGL_INTEGRATION",
+            if is_cuda_opengl_integration_enabled() { "ON" } else { "OFF" },
         )
         .define(
             "CUDA_ARCHITECTURES",

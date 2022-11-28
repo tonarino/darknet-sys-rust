@@ -11761,6 +11761,7 @@ extern "C" {
 extern "C" {
     pub fn network_predict(net: network, input: *mut f32) -> *mut f32;
 }
+#[cfg(feature = "enable-cuda-opengl-integration")]
 extern "C" {
     pub fn network_predict_gl_texture(net: *mut network, texture_id: u32) -> *mut f32;
 }

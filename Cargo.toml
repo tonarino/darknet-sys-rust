@@ -26,6 +26,7 @@ dylib = []
 enable-cuda = []
 enable-cudnn = []
 enable-opencv = []
+enable-cuda-opengl-integration = ["enable-cuda"]
 docs-rs = []
 
 ["package.metadata.docs.rs"]
